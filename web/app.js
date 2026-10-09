@@ -383,7 +383,7 @@
   }
 
   function timeChart(track, top) {
-    const W = 360, H = 190, L = 28, R = 104, T = 8, B = 24;
+    const W = 360, H = 190, L = 28, R = 130, T = 8, B = 24; // R leaves room for the longest archetype name
     const n = track.length - 1;
     const cos = track.map((u) => (Math.hypot(...u) > 0 ? S.matches(u).map((m) => m.cosine) : new Array(DATA.tags.length).fill(0)));
     const x = (i) => L + (i / Math.max(n, 1)) * (W - L - R);
@@ -413,7 +413,7 @@
 
   // One card per theme: what you said (the same rows as the mirror card) and what it means compared with how
   // most people answer.
-  function themeCard(u, d) {
+  function themeInfo(u, d) {
     const m = I.mirror(st, d);
     if (!m.values.some((v) => v != null)) return null;
     const mean = I.meaning(u, st.r, d);
@@ -424,10 +424,80 @@
       lines.push(mean.gap.is === 'mid' ? t('gapMid', { said: dt[mean.gap.said] }) : t('gapOpp', { said: dt[mean.gap.said], is: dt[mean.gap.is] }));
     }
     if (mean.mixed) lines.push(t('mixedNote'));
+    return { m, dim: dt.name, text: lines.join(' ') };
+  }
+  function themeCard(u, d) {
+    const info = themeInfo(u, d);
+    if (!info) return null;
     return h('div', { class: 'theme-card' },
-      h('div', { class: 'theme-head' }, h('span', { class: 'name' }, themeText(d)), h('span', { class: 'small' }, dt.name)),
-      h('details', {}, h('summary', {}, saidText(m)), answerRows(m)),
-      h('p', { class: 'means' }, lines.join(' ')));
+      h('div', { class: 'theme-head' }, h('span', { class: 'name' }, themeText(d)), h('span', { class: 'small' }, info.dim)),
+      h('details', {}, h('summary', {}, saidText(info.m)), answerRows(info.m)),
+      h('p', { class: 'means' }, info.text));
+  }
+
+  // ---------- share and PDF ----------
+  // A plain snapshot of what the results page shows, in the current language, for share.js to draw.
+  function reportOf(u, ms, top, norm, answered, track, charts) {
+    const pct = (c) => Math.max(0, Math.round(c * 100));
+    const title = norm < TAU ? t('balancedTitle') : t('closest', { name: shortName(DATA.tags[top[0]]) });
+    const notes = [];
+    if (answered < 20) notes.push(t('fewAnswers', { n: answered }));
+    if (norm < TAU) notes.push(t('balancedNote'));
+    return {
+      brand: t('title'), title, notes,
+      top: ms.slice(0, 3).map((m) => ({ name: tagText(DATA.tags[m.index]).name, desc: tagText(DATA.tags[m.index]).description, pct: pct(m.cosine), cat: DATA.tags[m.index].category })),
+      pctNote: t('pctNote'),
+      profileTitle: t('yourProfile'),
+      dims: DATA.dimensions.map((d, i) => ({ lo: dimText(d).low, hi: dimText(d).high, v: u[i] })),
+      profileNote: t('profileNote'),
+      saidTitle: t('saidMeansTitle'), saidNote: t('saidMeansNote'),
+      themes: DATA.dimensions.map((_, d) => {
+        const info = themeInfo(u, d);
+        return info && { name: themeText(d), dim: info.dim, said: saidText(info.m), text: info.text };
+      }).filter(Boolean),
+      comboTitle: t('combosTitle'), combos: I.combos(u).slice(0, 3).map((c) => comboText(c.id)),
+      pathTitle: t('pathTitle'), pathNote: t('pathNote'), pathSvg: charts.path,
+      legend: [['dark', t('legendDark')], ['bright', t('legendBright')], ['neutral', t('legendNeutral')]],
+      matchTitle: t('matchTitle'), timeSvg: charts.time,
+      disclaimer: t('disclaimer') + (st.plain ? ` ${t('plainNote')}` : ''),
+    };
+  }
+
+  let busy = false;
+  const pngOf = (r) => {
+    if (!r.png) r.png = Share.png(r).catch((e) => { r.png = null; throw e; });
+    return r.png;
+  };
+  async function working(fn) { // one file at a time; the buttons are disabled meanwhile
+    if (busy) return;
+    busy = true;
+    const btns = [...document.querySelectorAll('.share-row button')];
+    btns.forEach((b) => { b.disabled = true; });
+    toast(t('preparing'));
+    try { await fn(); } catch (e) { toast(t('shareFailed')); }
+    busy = false;
+    btns.forEach((b) => { b.disabled = false; });
+  }
+  async function shareImage(r) {
+    const blob = await pngOf(r);
+    const data = { files: [new File([blob], 'personality-test.png', { type: 'image/png' })], title: r.title, text: t('shareText', { title: r.title }) };
+    if (navigator.canShare && navigator.canShare(data)) {
+      try { await navigator.share(data); return; } catch (e) { if (e && e.name === 'AbortError') return; /* otherwise save it instead */ }
+    }
+    Share.save(blob, 'personality-test.png');
+    toast(t('imageSaved'));
+  }
+  async function savePdf(r) {
+    Share.save(await Share.pdf(r), 'personality-test.pdf');
+    toast(t('pdfSaved'));
+  }
+  const ICON_SHARE = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>';
+  const ICON_PDF = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>';
+  function shareRow(r) {
+    const label = (icon, text) => [html(h('span', { class: 'icon' }), icon), text];
+    return h('div', { class: 'share-row' },
+      h('button', { class: 'primary', 'aria-label': t('shareAria'), onclick: () => working(() => shareImage(r)) }, ...label(ICON_SHARE, t('share'))),
+      h('button', { 'aria-label': t('pdfAria'), onclick: () => working(() => savePdf(r)) }, ...label(ICON_PDF, t('savePdf'))));
   }
 
   // reveal: arriving from the last question, so the top match sharpens in and the path draws itself
@@ -453,6 +523,8 @@
         h('div', { class: 'meter' }, h('div', { style: `width:${pct(m.cosine)}%` }))));
     });
     nodes.push(h('p', { class: 'small' }, t('pctNote')));
+    const report = reportOf(u, ms, top, norm, answered, track, { path: pathChart(track, top), time: timeChart(track, top) });
+    nodes.push(shareRow(report));
 
     nodes.push(h('h2', {}, t('saidMeansTitle')));
     nodes.push(h('p', { class: 'muted' }, t('saidMeansNote')));
@@ -488,8 +560,10 @@
     nodes.push(h('details', {}, h('summary', {}, t('allTags')), h('table', {}, h('tbody', {}, rows))));
     nodes.push(h('p', { class: 'small' }, t('disclaimer')));
     if (st.plain) nodes.push(h('p', { class: 'small' }, t('plainNote')));
+    nodes.push(shareRow(report));
     nodes.push(h('button', { class: 'primary', onclick: () => { clear(); st = null; intro(); } }, t('again')));
     show(result, ...nodes.filter(Boolean));
+    setTimeout(() => { if (current === result && !busy) pngOf(report).catch(() => {}); }, 800); // ready before the tap, so the share sheet opens at once
     if (anim) { // draw the path once it scrolls into view
       if (!('IntersectionObserver' in window)) path.classList.add('play');
       else {

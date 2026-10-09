@@ -196,3 +196,8 @@ button:active:not(:disabled) { transform: scale(.94); }
   .anim .trace { opacity: 1; }
   .portrait .plus { display: none; }
 }
+
+/* ---------- share ---------- */
+.share-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 8px; }
+.share-row button { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; font-weight: 600; }
+.share-row .icon { display: inline-flex; }

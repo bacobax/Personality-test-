@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent.parent
 out = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "dist" / "personality-test.html"
 
 css = (ROOT / "web" / "style.css").read_text()
-js = {n: (ROOT / "web" / n).read_text() for n in ("data.js", "scoring.js", "insights.js", "i18n.js", "app.js")}
+js = {n: (ROOT / "web" / n).read_text() for n in ("data.js", "scoring.js", "insights.js", "share.js", "i18n.js", "app.js")}
 for name, src in js.items():
     assert "</script" not in src.lower(), f"{name} contains a closing script tag"
 
@@ -23,6 +23,7 @@ page = f"""<title>Personality Test</title>
 {js['data.js']}
 {js['scoring.js']}
 {js['insights.js']}
+{js['share.js']}
 {js['i18n.js']}
 {js['app.js']}
 </script>

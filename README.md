@@ -58,6 +58,18 @@ Rigor details:
 
 Theme names, what each pole means and the combinations live in `data/insights.json`.
 
+## Share and PDF
+
+The results page has two buttons (at the top and at the bottom of the results):
+
+- **Share** makes a picture of the results (top 3 archetypes, the 12 bars and the path) and opens the phone's share
+  sheet, so it can go to any app. Browsers without a share sheet for files (e.g. desktop Firefox) save the image instead.
+- **Save as PDF** downloads a multi-page A4 report with everything, including the explanations, the combinations and the
+  match chart. Its pages are pictures, so the text can't be selected or searched.
+
+Both are drawn in the browser by `web/share.js` (no library, nothing is sent anywhere) in a fixed light theme, in the
+page's current language.
+
 ## Languages
 
 The web page is available in English and Italian (EN/IT switch at the top; it defaults to the phone's language and
