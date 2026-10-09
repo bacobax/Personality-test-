@@ -91,5 +91,51 @@
     "rebel": { "name": "Ribelle", "description": "Indipendente e anticonformista; mette in discussione l'autorità e infrange le regole che non hanno senso." },
     "loner": { "name": "Solitario", "description": "Riservato e autosufficiente; tiene le persone a distanza e ha bisogno di poco dagli altri." },
     "guardian": { "name": "Guardiano", "description": "Scrupoloso e di principi; dà valore a tradizione, regole e parola data." }
+  },
+  "insights": {
+    "themes": {
+      "empathy": "Le emozioni degli altri",
+      "honesty": "Farsi strada",
+      "self_image": "Come ti vedi",
+      "admiration_seeking": "Farsi notare",
+      "dominance": "Prendere l'iniziativa",
+      "sociability": "Stare tra la gente",
+      "anxiety": "Stress e preoccupazioni",
+      "hostility": "Quando qualcuno ti irrita",
+      "discipline": "Piani e abitudini",
+      "risk_taking": "Rischio e pericolo",
+      "openness": "Idee e immaginazione",
+      "trust": "Come sono le persone"
+    },
+    "poles": {
+      "empathy": { "low": "I problemi degli altri non ti coinvolgono molto: mantieni una certa distanza.", "high": "Cogli quello che provano gli altri e ti tocca davvero." },
+      "honesty": { "low": "Sei disposto/a a piegare le regole o a lavorarti le persone per ottenere ciò che vuoi.", "high": "Preferisci giocare pulito, anche quando una scorciatoia converrebbe." },
+      "self_image": { "low": "Tendi a dubitare di te e a sminuire quello che sai fare.", "high": "Ti vedi come una persona particolarmente capace, una spanna sopra la media." },
+      "admiration_seeking": { "low": "Non hai bisogno di un pubblico: dell'attenzione puoi fare a meno.", "high": "Essere visto/a e ammirato/a conta per te, e ti piace stare sotto i riflettori." },
+      "dominance": { "low": "Lasci volentieri che siano altri a guidare e a decidere.", "high": "Prendi in mano la situazione in modo naturale e ti piace dare la direzione." },
+      "sociability": { "low": "Con la gente sei più silenzioso/a e ti ricarichi da solo/a.", "high": "Le persone ti danno energia e ti piace stare in mezzo agli altri." },
+      "anxiety": { "low": "Resti calmo/a quando la situazione si fa tesa: le preoccupazioni non ti si attaccano.", "high": "Lo stress ti pesa, e la tua mente corre subito a ciò che potrebbe andare storto." },
+      "hostility": { "low": "L'irritazione ti passa in fretta e lasci correre.", "high": "Ti irriti in fretta e sei portato/a a reagire." },
+      "discipline": { "low": "Tieni le cose flessibili e decidi sul momento.", "high": "Ti piacciono piani e ordine, e porti a termine quello che inizi." },
+      "risk_taking": { "low": "Preferisci andare sul sicuro ed evitare il pericolo.", "high": "Il pericolo e il rischio ti attirano invece di frenarti." },
+      "openness": { "low": "Preferisci il concreto e il familiare alle idee astratte.", "high": "Hai la testa piena di idee e ti attirano la varietà e l'astratto." },
+      "trust": { "low": "Ti aspetti che ognuno pensi a sé, e resti in guardia.", "high": "Pensi bene delle persone finché non ti dimostrano il contrario." }
+    },
+    "combos": {
+      "guarded_carer": "Premuroso/a ma guardingo/a: tieni alle persone, ma la tua fiducia va guadagnata.",
+      "nervous_social": "Socievole ma teso/a: cerchi la compagnia anche quando ti mette un po' in agitazione.",
+      "curious_finisher": "Curioso/a e metodico/a: insegui idee nuove e le porti davvero a termine.",
+      "jump_in": "Prima salti: preferisci buttarti e capire strada facendo.",
+      "warm_lead": "Guida calorosa: prendi in mano la situazione, ma tenendo conto di come si sentono gli altri.",
+      "results_first": "Prima i risultati: prendi il comando e lasci fuori i sentimenti.",
+      "want_to_be_seen": "Voglia di essere visto/a: vorresti riconoscimento anche mentre dubiti di te.",
+      "cool_head": "Sangue freddo: il rischio ti entusiasma senza scomporti.",
+      "inner_explorer": "Esploratore/esploratrice interiore: un mondo pieno di idee, che ti godi per lo più da solo/a.",
+      "on_guard": "In guardia: ti aspetti il peggio dalle persone e reagisci per primo/a.",
+      "quiet_principle": "Principi silenziosi: giochi pulito senza bisogno di comandare.",
+      "planned_worry": "Preoccupato/a ma preparato/a: pianificare è il tuo modo di tenere a bada l'ansia.",
+      "easy_trust": "Facile andarci d'accordo: concedi alle persone il beneficio del dubbio e lasci correre gli sgarbi.",
+      "humble_helper": "Aiuto silenzioso: ti prendi cura degli altri senza bisogno di riconoscimenti."
+    }
   }
 }
