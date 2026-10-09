@@ -1,0 +1,336 @@
+{
+  "version": 1,
+  "scale": {
+    "min": -1,
+    "max": 1,
+    "note": "Every dimension is bipolar. -1 = fully the 'low' pole, 0 = neutral/average, +1 = fully the 'high' pole. Dimensions missing from a tag vector are 0."
+  },
+  "dimensions": [
+    {
+      "id": "empathy",
+      "name": "Empathy",
+      "low": "Cold",
+      "high": "Empathic",
+      "description": "Feeling and caring about other people's emotions and suffering."
+    },
+    {
+      "id": "honesty",
+      "name": "Honesty",
+      "low": "Manipulative",
+      "high": "Sincere",
+      "description": "Being straightforward and fair instead of using deceit or flattery to get ahead."
+    },
+    {
+      "id": "self_image",
+      "name": "Self-image",
+      "low": "Self-doubting",
+      "high": "Grandiose",
+      "description": "How superior, special or entitled one feels compared to others."
+    },
+    {
+      "id": "admiration_seeking",
+      "name": "Admiration seeking",
+      "low": "Self-contained",
+      "high": "Attention-seeking",
+      "description": "Need for praise, status, recognition and being the centre of attention."
+    },
+    {
+      "id": "dominance",
+      "name": "Dominance",
+      "low": "Deferential",
+      "high": "Dominant",
+      "description": "Taking control, asserting oneself and steering others."
+    },
+    {
+      "id": "sociability",
+      "name": "Sociability",
+      "low": "Reserved",
+      "high": "Outgoing",
+      "description": "Drawing energy from social contact and seeking out company."
+    },
+    {
+      "id": "anxiety",
+      "name": "Anxiety",
+      "low": "Calm",
+      "high": "Anxious",
+      "description": "Worry, fear of failure or rejection, and sensitivity to stress."
+    },
+    {
+      "id": "hostility",
+      "name": "Hostility",
+      "low": "Easygoing",
+      "high": "Hostile",
+      "description": "Irritability, anger, holding grudges and retaliating."
+    },
+    {
+      "id": "discipline",
+      "name": "Discipline",
+      "low": "Spontaneous",
+      "high": "Disciplined",
+      "description": "Planning, persistence, order and impulse control."
+    },
+    {
+      "id": "risk_taking",
+      "name": "Risk taking",
+      "low": "Cautious",
+      "high": "Thrill-seeking",
+      "description": "Seeking excitement and accepting danger or uncertainty for reward."
+    },
+    {
+      "id": "openness",
+      "name": "Openness",
+      "low": "Conventional",
+      "high": "Curious",
+      "description": "Interest in ideas, novelty, art and unconventional ways of thinking."
+    },
+    {
+      "id": "trust",
+      "name": "Trust",
+      "low": "Suspicious",
+      "high": "Trusting",
+      "description": "Assuming good intentions in others rather than hidden motives."
+    }
+  ],
+  "tags": [
+    {
+      "id": "grandiose_narcissist",
+      "name": "Grandiose Narcissist",
+      "category": "dark",
+      "description": "Confident, charming and status-hungry; feels special and expects others to recognise it.",
+      "vector": {
+        "empathy": -0.6,
+        "honesty": -0.4,
+        "self_image": 0.9,
+        "admiration_seeking": 0.9,
+        "dominance": 0.6,
+        "sociability": 0.4,
+        "anxiety": -0.3,
+        "hostility": 0.3,
+        "risk_taking": 0.3
+      }
+    },
+    {
+      "id": "vulnerable_narcissist",
+      "name": "Vulnerable Narcissist",
+      "category": "dark",
+      "description": "Craves validation but feels fragile; reacts to slights with shame, resentment or withdrawal.",
+      "vector": {
+        "empathy": -0.4,
+        "honesty": -0.2,
+        "self_image": 0.2,
+        "admiration_seeking": 0.8,
+        "sociability": -0.3,
+        "anxiety": 0.7,
+        "hostility": 0.6,
+        "trust": -0.6
+      }
+    },
+    {
+      "id": "machiavellian",
+      "name": "Strategist (Machiavellian)",
+      "category": "dark",
+      "description": "Calculating and patient; sees relationships as chess moves and keeps the real plan hidden.",
+      "vector": {
+        "empathy": -0.5,
+        "honesty": -0.9,
+        "self_image": 0.3,
+        "dominance": 0.5,
+        "anxiety": -0.2,
+        "discipline": 0.6,
+        "risk_taking": -0.2,
+        "openness": 0.2,
+        "trust": -0.8
+      }
+    },
+    {
+      "id": "psychopathic",
+      "name": "Daredevil (Psychopathic)",
+      "category": "dark",
+      "description": "Fearless, impulsive and callous; chases excitement with little guilt about who gets hurt.",
+      "vector": {
+        "empathy": -0.9,
+        "honesty": -0.6,
+        "self_image": 0.5,
+        "dominance": 0.5,
+        "anxiety": -0.8,
+        "hostility": 0.6,
+        "discipline": -0.7,
+        "risk_taking": 0.9
+      }
+    },
+    {
+      "id": "caregiver",
+      "name": "Caregiver",
+      "category": "bright",
+      "description": "Warm and selfless; notices what others need and puts it first.",
+      "vector": {
+        "empathy": 0.9,
+        "honesty": 0.6,
+        "self_image": -0.2,
+        "admiration_seeking": -0.3,
+        "dominance": 0.1,
+        "sociability": 0.6,
+        "anxiety": 0.3,
+        "hostility": -0.3,
+        "discipline": 0.3,
+        "trust": 0.5
+      }
+    },
+    {
+      "id": "leader",
+      "name": "Leader",
+      "category": "bright",
+      "description": "Decisive and composed; takes charge, sets direction and stays steady under pressure.",
+      "vector": {
+        "empathy": 0.2,
+        "honesty": 0.3,
+        "self_image": 0.4,
+        "dominance": 0.9,
+        "sociability": 0.5,
+        "anxiety": -0.6,
+        "discipline": 0.6,
+        "risk_taking": 0.3
+      }
+    },
+    {
+      "id": "performer",
+      "name": "Performer",
+      "category": "bright",
+      "description": "Expressive and magnetic; lights up a room and loves an audience.",
+      "vector": {
+        "self_image": 0.3,
+        "admiration_seeking": 0.7,
+        "sociability": 0.9,
+        "anxiety": -0.2,
+        "discipline": -0.4,
+        "risk_taking": 0.5,
+        "openness": 0.4,
+        "trust": 0.3
+      }
+    },
+    {
+      "id": "thinker",
+      "name": "Thinker",
+      "category": "bright",
+      "description": "Curious and independent; prefers ideas to small talk and is happy in their own head.",
+      "vector": {
+        "admiration_seeking": -0.5,
+        "dominance": -0.1,
+        "sociability": -0.6,
+        "discipline": 0.3,
+        "risk_taking": -0.2,
+        "openness": 0.9
+      }
+    },
+    {
+      "id": "worrier",
+      "name": "Worrier",
+      "category": "neutral",
+      "description": "Sensitive and cautious; anticipates what could go wrong and doubts their own worth.",
+      "vector": {
+        "empathy": 0.3,
+        "self_image": -0.7,
+        "dominance": -0.6,
+        "sociability": -0.2,
+        "anxiety": 0.9,
+        "risk_taking": -0.7,
+        "trust": -0.2
+      }
+    },
+    {
+      "id": "perfectionist",
+      "name": "Perfectionist",
+      "category": "neutral",
+      "description": "Driven by high standards; organised and reliable but hard on themselves and others.",
+      "vector": {
+        "honesty": 0.3,
+        "self_image": -0.2,
+        "dominance": 0.2,
+        "anxiety": 0.5,
+        "hostility": 0.3,
+        "discipline": 0.9,
+        "risk_taking": -0.5,
+        "openness": -0.2,
+        "trust": -0.3
+      }
+    },
+    {
+      "id": "adventurer",
+      "name": "Adventurer",
+      "category": "bright",
+      "description": "Restless and bold; seeks new places, experiences and adrenaline.",
+      "vector": {
+        "sociability": 0.4,
+        "anxiety": -0.5,
+        "discipline": -0.5,
+        "risk_taking": 0.9,
+        "openness": 0.7,
+        "trust": 0.3
+      }
+    },
+    {
+      "id": "peacemaker",
+      "name": "Peacemaker",
+      "category": "bright",
+      "description": "Patient and accommodating; avoids conflict and smooths things over.",
+      "vector": {
+        "empathy": 0.4,
+        "honesty": 0.3,
+        "admiration_seeking": -0.3,
+        "dominance": -0.7,
+        "sociability": -0.1,
+        "anxiety": -0.5,
+        "hostility": -0.9,
+        "risk_taking": -0.2,
+        "openness": 0.3,
+        "trust": 0.4
+      }
+    },
+    {
+      "id": "rebel",
+      "name": "Rebel",
+      "category": "neutral",
+      "description": "Independent and defiant; questions authority and breaks rules that don't make sense.",
+      "vector": {
+        "self_image": 0.3,
+        "dominance": 0.4,
+        "hostility": 0.5,
+        "discipline": -0.5,
+        "risk_taking": 0.5,
+        "openness": 0.6,
+        "trust": -0.5
+      }
+    },
+    {
+      "id": "loner",
+      "name": "Loner",
+      "category": "neutral",
+      "description": "Private and self-reliant; keeps people at a distance and needs little from them.",
+      "vector": {
+        "empathy": -0.2,
+        "admiration_seeking": -0.6,
+        "dominance": -0.2,
+        "sociability": -0.9,
+        "anxiety": 0.2,
+        "trust": -0.6
+      }
+    },
+    {
+      "id": "guardian",
+      "name": "Guardian",
+      "category": "bright",
+      "description": "Dutiful and principled; values tradition, rules and keeping their word.",
+      "vector": {
+        "empathy": 0.4,
+        "honesty": 0.7,
+        "admiration_seeking": -0.2,
+        "anxiety": -0.2,
+        "discipline": 0.7,
+        "risk_taking": -0.6,
+        "openness": -0.7,
+        "trust": 0.4,
+        "hostility": -0.2
+      }
+    }
+  ]
+}
