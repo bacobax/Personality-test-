@@ -1,0 +1,125 @@
+{
+  "note": "Insight text for the web test. themes: neutral names shown during the test (no poles, no judgement). poles: what a low/high score means, shown only on the results page. combos: shown only on the results page when both dimensions are clearly on the given side. Translations live under \"insights\" in data/i18n/<lang>.json (combo conditions stay here).",
+  "themes": {
+    "empathy": "Other people's feelings",
+    "honesty": "Getting ahead",
+    "self_image": "How you see yourself",
+    "admiration_seeking": "Being noticed",
+    "dominance": "Taking the lead",
+    "sociability": "Being around people",
+    "anxiety": "Stress and worry",
+    "hostility": "When people annoy you",
+    "discipline": "Plans and routine",
+    "risk_taking": "Risk and danger",
+    "openness": "Ideas and imagination",
+    "trust": "What people are like"
+  },
+  "poles": {
+    "empathy": {
+      "low": "Other people's troubles don't pull you in much; you keep a cooler distance.",
+      "high": "You pick up on how others feel and it moves you."
+    },
+    "honesty": {
+      "low": "You're willing to bend the rules or work on people to get what you want.",
+      "high": "You'd rather play it straight, even when a shortcut would pay off."
+    },
+    "self_image": {
+      "low": "You tend to doubt yourself and play down what you can do.",
+      "high": "You see yourself as unusually capable, a cut above most."
+    },
+    "admiration_seeking": {
+      "low": "You don't need an audience; attention is something you can do without.",
+      "high": "Being seen and admired matters to you, and you enjoy the spotlight."
+    },
+    "dominance": {
+      "low": "You're happy to let others steer and make the calls.",
+      "high": "You naturally take charge and like to set the direction."
+    },
+    "sociability": {
+      "low": "You're quieter with people and recharge on your own.",
+      "high": "You get energy from people and like being in the mix."
+    },
+    "anxiety": {
+      "low": "You stay calm when things get tense; worry doesn't stick.",
+      "high": "Stress gets to you, and your mind is quick to run through what could go wrong."
+    },
+    "hostility": {
+      "low": "Irritation passes quickly, and you let things go.",
+      "high": "Annoyance comes fast, and you're inclined to hit back."
+    },
+    "discipline": {
+      "low": "You keep things loose and decide in the moment.",
+      "high": "You like plans and order, and you finish what you start."
+    },
+    "risk_taking": {
+      "low": "You'd rather play it safe and skip the danger.",
+      "high": "Danger and risk draw you in rather than put you off."
+    },
+    "openness": {
+      "low": "You prefer the concrete and familiar to abstract ideas.",
+      "high": "You're full of ideas and drawn to variety and the abstract."
+    },
+    "trust": {
+      "low": "You expect people to look out for themselves, and you stay on guard.",
+      "high": "You assume the best about people until shown otherwise."
+    }
+  },
+  "combos": {
+    "guarded_carer": {
+      "when": { "empathy": "high", "trust": "low" },
+      "text": "Caring but guarded: you feel for people, but they have to earn your trust."
+    },
+    "nervous_social": {
+      "when": { "sociability": "high", "anxiety": "high" },
+      "text": "Social but tense: you seek people out even though it can make you nervous."
+    },
+    "curious_finisher": {
+      "when": { "openness": "high", "discipline": "high" },
+      "text": "Curious and methodical: you chase new ideas and actually follow through on them."
+    },
+    "jump_in": {
+      "when": { "risk_taking": "high", "discipline": "low" },
+      "text": "Jump first: you'd rather leap in and work it out on the way down."
+    },
+    "warm_lead": {
+      "when": { "dominance": "high", "empathy": "high" },
+      "text": "Warm lead: you take charge, but with people's feelings in mind."
+    },
+    "results_first": {
+      "when": { "dominance": "high", "empathy": "low" },
+      "text": "Results first: you take charge and keep feelings out of the way."
+    },
+    "want_to_be_seen": {
+      "when": { "self_image": "low", "admiration_seeking": "high" },
+      "text": "Wanting to be seen: you'd like recognition even while you doubt yourself."
+    },
+    "cool_head": {
+      "when": { "anxiety": "low", "risk_taking": "high" },
+      "text": "Cool head: risk excites you without rattling you."
+    },
+    "inner_explorer": {
+      "when": { "sociability": "low", "openness": "high" },
+      "text": "Inner explorer: a busy world of ideas, mostly enjoyed on your own."
+    },
+    "on_guard": {
+      "when": { "hostility": "high", "trust": "low" },
+      "text": "On guard: you expect the worst from people and push back first."
+    },
+    "quiet_principle": {
+      "when": { "honesty": "high", "dominance": "low" },
+      "text": "Quietly principled: you play fair without needing to be in charge."
+    },
+    "planned_worry": {
+      "when": { "anxiety": "high", "discipline": "high" },
+      "text": "Prepared worrier: planning ahead is how you keep worry in check."
+    },
+    "easy_trust": {
+      "when": { "hostility": "low", "trust": "high" },
+      "text": "Easy to get along with: you give people the benefit of the doubt and let slights go."
+    },
+    "humble_helper": {
+      "when": { "empathy": "high", "admiration_seeking": "low" },
+      "text": "Quiet helper: you care about others without needing credit for it."
+    }
+  }
+}

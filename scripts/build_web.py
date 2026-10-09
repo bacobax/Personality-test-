@@ -11,6 +11,7 @@ from scoring import K0, ROOT, Bank
 bank = Bank()
 P, explained = bank.pca2()
 model = json.loads((ROOT / "data" / "model.json").read_text())
+insights = json.loads((ROOT / "data" / "insights.json").read_text())
 
 
 def r(a, n=6):
@@ -26,8 +27,18 @@ data = {
                   for i, q in enumerate(bank.questions)],
     "pca": {"P": r(P), "explained": r(explained)},
     "range": {"lo": r(bank.lo), "hi": r(bank.hi)},
+    "insights": {k: insights[k] for k in ("themes", "poles", "combos")},
     "i18n": {},
 }
+
+# Insight text must cover every dimension, and combos must name real dimensions and sides.
+dim_ids = {d["id"] for d in data["dimensions"]}
+assert set(insights["themes"]) == dim_ids and set(insights["poles"]) == dim_ids, "data/insights.json: themes/poles ids"
+for p in insights["poles"].values():
+    assert set(p) == {"low", "high"}
+for cid, c in insights["combos"].items():
+    assert set(c["when"]) <= dim_ids and len(c["when"]) == 2, f"combo {cid}"
+    assert set(c["when"].values()) <= {"low", "high"}, f"combo {cid}"
 
 # Translations: data/i18n/<lang>.json must cover exactly the same ids as the English source.
 want = {"questions": {q["id"] for q in data["questions"]}, "dimensions": {d["id"] for d in data["dimensions"]},
@@ -41,6 +52,11 @@ for path in sorted((ROOT / "data" / "i18n").glob("*.json")):
         assert set(d) == {"name", "low", "high"}
     for t in tr["tags"].values():
         assert set(t) == {"name", "description"}
+    ins = tr["insights"]
+    assert set(ins["themes"]) == dim_ids and set(ins["poles"]) == dim_ids, f"{path.name} insights: themes/poles ids"
+    assert set(ins["combos"]) == set(insights["combos"]), f"{path.name} insights: combo ids"
+    for p in ins["poles"].values():
+        assert set(p) == {"low", "high"}
     data["i18n"][path.stem] = tr
 out = ROOT / "web" / "data.js"
 out.parent.mkdir(exist_ok=True)
