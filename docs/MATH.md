@@ -31,9 +31,20 @@ $$u_d = \frac{S_d}{W_d + k_0} = \frac{\sum_i a_i\,w_{id}}{\sum_i c_i\,|w_{id}| +
 With $c_i = 1$ and $k_0=0$ this is exactly a weighted mean: weights $|w_{id}|$, values $\operatorname{sign}(w_{id})\,a_i$.
 $k_0$ shrinks scores toward 0 when evidence is thin. $|a_i| \le c_i$, so $u_d \in [-1,1]$.
 
+## 4b. Range normalization
+
+Baselines make some dimensions lopsided. For example, most people already agree with "I sympathize with others' feelings",
+so even "strongly agree" barely moves `empathy` up. Let $hi_d$ and $lo_d$ be the highest and lowest $u_d$ any answer pattern
+can produce: every question on $d$ answered at the extreme that pushes $d$ up, or down. Extreme answers are optimal,
+since raising $|a_i|$ adds $|w_{id}|$ to $S_d$ but only $|w_{id}|/2$ to $W_d$. Then
+
+$$\tilde u_d = \begin{cases} u_d / hi_d & u_d \ge 0 \\ u_d / |lo_d| & u_d < 0 \end{cases} \in [-1, 1]$$
+
+0 still means "typical person". Matching uses $\tilde{\mathbf u}$. The code is `scripts/scoring.py` (`Bank.score`).
+
 ## 5. Matching
 
-Direction: $\cos(\mathbf u,\mathbf t_k) = \dfrac{\mathbf u^\top \mathbf t_k}{\lVert\mathbf u\rVert\,\lVert\mathbf t_k\rVert}$
+Direction: $\cos(\tilde{\mathbf u},\mathbf t_k)$ (computed on the normalized profile)
 
 Strength: $s_k = \mathbf u^\top \hat{\mathbf t}_k$, with $\hat{\mathbf t}_k = \mathbf t_k / \lVert\mathbf t_k\rVert$
 

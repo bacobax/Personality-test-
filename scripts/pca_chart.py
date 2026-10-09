@@ -2,11 +2,11 @@
 
 PCA axes are fitted on the 15 tag vectors, uncentered so the origin stays the
 "typical person". Question vectors and simulated user profiles are projected
-onto the same axes. Scoring follows docs/MATH.md (k0 = 1).
+onto the same axes. Scoring follows docs/MATH.md, including step 4b (range
+normalization) unless --raw is given.
 
-Usage: python3 scripts/pca_chart.py [output.png]
+Usage: python3 scripts/pca_chart.py [--raw] [output.png]
 """
-import json
 import sys
 from pathlib import Path
 
@@ -16,34 +16,16 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-ROOT = Path(__file__).resolve().parent.parent
-out = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "docs" / "pca.png"
-K0 = 1.0
+from scoring import ROOT, Bank
 
-model = json.loads((ROOT / "data" / "model.json").read_text())
-qs = json.loads((ROOT / "data" / "questions.json").read_text())["questions"]
-dims = [d["id"] for d in model["dimensions"]]
+raw = "--raw" in sys.argv
+args = [a for a in sys.argv[1:] if a != "--raw"]
+out = Path(args[0]) if args else ROOT / "docs" / ("pca_raw.png" if raw else "pca.png")
+
+bank = Bank()
+dims, tags, T = bank.dims, bank.tags, bank.T
 D = len(dims)
-tags = model["tags"]
-T = np.array([[t["vector"].get(d, 0.0) for d in dims] for t in tags])
-Wq = np.array([[q["loadings"].get(d, 0.0) for d in dims] for q in qs])
-mu = np.array([q["baseline"] for q in qs])
-
-
-def profile(r):
-    """User profile u for answers r (one 1-5 answer per question), per docs/MATH.md."""
-    a = (r - mu) / np.maximum(mu - 1, 5 - mu)
-    c = 0.5 + 0.5 * np.abs(a)
-    S = a @ Wq
-    W = c @ np.abs(Wq)
-    return S / (W + K0)
-
-
-def best_answers(t):
-    """Answer every question to push the profile as far toward tag t as possible."""
-    push = Wq @ t
-    return np.where(push > 0, 5.0, np.where(push < 0, 1.0, np.round(mu)))
-
+score = bank.profile if raw else bank.score
 
 # PCA on tags, uncentered (origin = typical person).
 _, s, Vt = np.linalg.svd(T, full_matrices=False)
@@ -51,10 +33,11 @@ P = Vt[:2].T
 explained = s[:2] ** 2 / (s ** 2).sum()
 
 tag_xy = T @ P
-reach = np.array([profile(best_answers(t)) for t in T])
+reach = np.array([score(bank.extreme_answers(t)) for t in T])
 reach_xy = reach @ P
 rng = np.random.default_rng(0)
-random_xy = np.array([profile(rng.integers(1, 6, len(qs)).astype(float)) for _ in range(1000)]) @ P
+random_u = np.array([score(rng.integers(1, 6, len(bank.questions)).astype(float)) for _ in range(1000)])
+random_xy = random_u @ P
 axis_xy = 0.8 * np.eye(D) @ P  # every question is +-0.8 on one dimension
 
 # Reference palette, light mode (dataviz skill): first three categorical slots.
@@ -65,7 +48,10 @@ cats = [t["category"] for t in tags]
 plt.rcParams.update({"font.size": 9, "axes.edgecolor": GRID, "axes.labelcolor": INK2,
                      "xtick.color": MUTED, "ytick.color": MUTED, "text.color": INK})
 fig, axes = plt.subplots(1, 2, figsize=(17, 8.5), facecolor=SURFACE)
-lim = 1.08 * max(np.abs(tag_xy).max(), np.abs(reach_xy).max())
+# Same scale for raw and normalized charts so they can be compared side by side.
+reach_both = np.array([f(bank.extreme_answers(t)) for f in (bank.profile, bank.score) for t in T]) @ P
+lim = 1.08 * max(np.abs(tag_xy).max(), np.abs(reach_both).max())
+mode = "raw scores" if raw else "after range normalization"
 
 
 def frame(ax, title):
@@ -82,14 +68,15 @@ def frame(ax, title):
         sp.set_visible(False)
 
 
-LABEL_OFFSET = {"adventurer": (6, -11)}
+LABEL_OFFSET = {"adventurer": (6, -11), "psychopathic": (-8, 5), "perfectionist": (-6, 4), "worrier": (-4, 7)}
 
 
 def draw_tags(ax):
     for (x, y), t, c in zip(tag_xy, tags, cats):
         ax.scatter(x, y, s=70, color=CAT[c], edgecolor=SURFACE, linewidth=2, zorder=4)
-        ax.annotate(t["name"].split(" (")[0], (x, y), xytext=LABEL_OFFSET.get(t["id"], (6, 4)), textcoords="offset points",
-                    color=INK, fontsize=8.5, zorder=5)
+        off = LABEL_OFFSET.get(t["id"], (6, 4))
+        ax.annotate(t["name"].split(" (")[0], (x, y), xytext=off, textcoords="offset points",
+                    ha="left" if off[0] >= 0 else "right", color=INK, fontsize=8.5, zorder=5)
 
 
 # Left: question axes (biplot) + tags.
@@ -99,14 +86,14 @@ AXIS_SCALE = 0.75 * lim / np.linalg.norm(axis_xy, axis=1).max()  # biplot conven
 for d, (x, y) in enumerate(axis_xy * AXIS_SCALE):
     ax.plot([-x, x], [-y, y], color=MUTED, lw=1, zorder=1)
     ax.scatter([x, -x], [y, -y], s=12, color=MUTED, zorder=2)
-    off = {"honesty": (-4, -10), "admiration_seeking": (-8, 6)}.get(dims[d], (2 if x >= 0 else -2, 2))
+    off = {"honesty": (-4, -10), "admiration_seeking": (-8, 6), "dominance": (4, -10)}.get(dims[d], (2 if x >= 0 else -2, 2))
     ax.annotate(dims[d] + " +", (x, y), xytext=off, textcoords="offset points",
                 ha="left" if off[0] >= 0 else "right", color=INK2, fontsize=7)
 draw_tags(ax)
 
 # Right: what users can actually reach.
 ax = axes[1]
-frame(ax, "Tags vs profiles users can reach")
+frame(ax, f"Tags vs profiles users can reach ({mode})")
 ax.scatter(random_xy[:, 0], random_xy[:, 1], s=8, color=MUTED, alpha=0.35, linewidth=0, zorder=1)
 for (tx, ty), (rx, ry), c in zip(tag_xy, reach_xy, cats):
     ax.plot([tx, rx], [ty, ry], color=CAT[c], lw=1, alpha=0.6, zorder=2)
@@ -119,23 +106,22 @@ handles += [plt.Line2D([], [], marker="o", ls="", markerfacecolor=SURFACE, marke
                        markeredgewidth=2, markersize=8, label="most extreme reachable profile toward the tag"),
             plt.Line2D([], [], marker="o", ls="", color=MUTED, alpha=0.5, markersize=5,
                        label="1,000 users answering at random"),
-            plt.Line2D([], [], color=MUTED, lw=1, label=f"question axis, ±0.8 on one dimension (left panel stretched ×{AXIS_SCALE:.1f})")]
+            plt.Line2D([], [], color=MUTED, lw=1,
+                       label=f"question axis, ±0.8 on one dimension (left panel stretched ×{AXIS_SCALE:.1f})")]
 fig.legend(handles=handles, loc="lower center", ncol=3, frameon=False, fontsize=8.5)
 fig.tight_layout(rect=(0, 0.07, 1, 0.97))
 fig.savefig(out, dpi=110, facecolor=SURFACE)
-print(f"saved {out}")
+print(f"saved {out} ({mode})")
 print(f"explained (uncentered) PC1={explained[0]:.2f} PC2={explained[1]:.2f} sum={explained.sum():.2f}")
 
-print("\nper tag: |tag|, |best reachable|, cosine(best reachable, tag), share of tag reached along its direction")
+print("\nper tag: cosine(best reachable profile, tag), share of the tag reached along its direction")
 for t, tv, rv in zip(tags, T, reach):
     cos = rv @ tv / np.linalg.norm(rv) / np.linalg.norm(tv)
-    along = (rv @ tv) / (tv @ tv)
-    print(f"  {t['name']:30s} |t|={np.linalg.norm(tv):.2f} |u*|={np.linalg.norm(rv):.2f} cos={cos:.2f} reached={along:.0%}")
+    print(f"  {t['name']:30s} cos={cos:.2f} reached={(rv @ tv) / (tv @ tv):.0%}")
 
-hi = np.array([profile(np.where(Wq[:, d] > 0, 5.0, np.where(Wq[:, d] < 0, 1.0, np.round(mu))))[d] for d in range(D)])
-lo = np.array([profile(np.where(Wq[:, d] > 0, 1.0, np.where(Wq[:, d] < 0, 5.0, np.round(mu))))[d] for d in range(D)])
-tmax, tmin = T.max(axis=0), T.min(axis=0)
-print("\nper dimension: reachable range of u_d vs range used by tags")
+lo = np.array([score(bank.extreme_answers(-e))[d] for d, e in enumerate(np.eye(D))])
+hi = np.array([score(bank.extreme_answers(e))[d] for d, e in enumerate(np.eye(D))])
+print("\nper dimension: reachable range of the score vs range used by tags")
 for d in range(D):
-    print(f"  {dims[d]:18s} reachable [{lo[d]:+.2f}, {hi[d]:+.2f}]   tags use [{tmin[d]:+.1f}, {tmax[d]:+.1f}]")
-print(f"\nrandom users: mean |u| = {np.linalg.norm(random_xy, axis=1).mean():.2f} in the PCA plane")
+    print(f"  {dims[d]:18s} reachable [{lo[d]:+.2f}, {hi[d]:+.2f}]   tags use [{T[:, d].min():+.1f}, {T[:, d].max():+.1f}]")
+print(f"\nrandom users: mean |u| over 12 dims = {np.linalg.norm(random_u, axis=1).mean():.2f}")
