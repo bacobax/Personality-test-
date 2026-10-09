@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "baseline_population": "IPC==1 respondents, n=696845 of 1015341 rows; self-selected online sample 2016-2018",
+  "questions": [
+    {
+      "id": "q001",
+      "text": "I am the life of the party.",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EXT1",
+        "ipip_factor": "Surgency / Extraversion",
+        "ipip_key": "+"
+      },
+      "loadings": {
+        "sociability": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.59,
+      "baseline_source": "data",
+      "baseline_n": 693455
+    },
+    {
+      "id": "q002",
+      "text": "I don't talk a lot.",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EXT2",
+        "ipip_factor": "Surgency / Extraversion",
+        "ipip_key": "-"
+      },
+      "loadings": {
+        "sociability": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.84,
+      "baseline_source": "data",
+      "baseline_n": 691919
+    },
+    {
+      "id": "q003",
+      "text": "I feel little concern for others.",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "AGR1",
+        "ipip_factor": "Agreeableness",
+        "ipip_key": "-"
+      },
+      "loadings": {
+        "empathy": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.25,
+      "baseline_source": "data",
+      "baseline_n": 692630
+    },
+    {
+      "id": "q004",
+      "text": "I get stressed out easily.",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EST1",
+        "ipip_factor": "Emotional Stability",
+        "ipip_key": "-"
+      },
+      "loadings": {
+        "anxiety": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.31,
+      "baseline_source": "data",
+      "baseline_n": 690978
+    },
+    {
+      "id": "q005",
+      "text": "I leave my belongings around.",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "CSN2",
+        "ipip_factor": "Conscientiousness",
+        "ipip_key": "-"
+      },
+      "loadings": {
+        "discipline": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.0,
+      "baseline_source": "data",
+      "baseline_n": 691622
+    }
+  ]
+}
