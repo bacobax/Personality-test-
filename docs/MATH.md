@@ -46,9 +46,9 @@ $$\tilde u_d = \begin{cases} u_d / hi_d & u_d \ge 0 \\ u_d / |lo_d| & u_d < 0 \e
 
 Direction: $\cos(\tilde{\mathbf u},\mathbf t_k)$ (computed on the normalized profile)
 
-Strength: $s_k = \mathbf u^\top \hat{\mathbf t}_k$, with $\hat{\mathbf t}_k = \mathbf t_k / \lVert\mathbf t_k\rVert$
+Strength: $s_k = \tilde{\mathbf u}^\top \hat{\mathbf t}_k$, with $\hat{\mathbf t}_k = \mathbf t_k / \lVert\mathbf t_k\rVert$
 
-If $\lVert\mathbf u\rVert < \tau$, report a balanced profile. Otherwise show the top 3 tags by cosine.
+If $\lVert\tilde{\mathbf u}\rVert < \tau$, report a balanced profile. Otherwise show the top 3 tags by cosine.
 
 ## Open parameters
 
