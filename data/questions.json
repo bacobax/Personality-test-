@@ -1,15 +1,72 @@
 {
-  "version": 1,
-  "baseline_population": "IPC==1 respondents, n=696845 of 1015341 rows; self-selected online sample 2016-2018",
+  "version": 2,
+  "datasets": {
+    "ipip-ffm": {
+      "title": "IPIP Big-Five Factor Markers (Open Psychometrics, 2016-2018)",
+      "url": "https://openpsychometrics.org/_rawdata/IPIP-FFM-data-8Nov2018.zip",
+      "filter": "IPC == 1",
+      "points": 5,
+      "respondents": 696845,
+      "rows_in_file": 1015341
+    },
+    "hexaco": {
+      "title": "IPIP HEXACO equivalent scales",
+      "url": "https://openpsychometrics.org/_rawdata/HEXACO.zip",
+      "filter": "V1 >= 6 and V2 >= 6",
+      "points": 7,
+      "respondents": 20365,
+      "rows_in_file": 22786
+    },
+    "as-sc-ad-do": {
+      "title": "IPIP Assertiveness, Social Confidence, Adventurousness, Dominance",
+      "url": "https://openpsychometrics.org/_rawdata/AS+SC+AD+DO.zip",
+      "filter": null,
+      "points": 5,
+      "respondents": 1005,
+      "rows_in_file": 1005
+    },
+    "mach-iv": {
+      "title": "MACH-IV (Christie & Geis)",
+      "url": "https://openpsychometrics.org/_rawdata/MACH_data.zip",
+      "filter": "VCL6 == 0 and VCL9 == 0 and VCL12 == 0",
+      "points": 5,
+      "respondents": 54976,
+      "rows_in_file": 73489
+    },
+    "hsns-dd": {
+      "title": "Hypersensitive Narcissism Scale + Dirty Dozen",
+      "url": "https://openpsychometrics.org/_rawdata/HSNS+DD.zip",
+      "filter": null,
+      "points": 5,
+      "respondents": 53981,
+      "rows_in_file": 53981
+    },
+    "sd3": {
+      "title": "Short Dark Triad (Jones & Paulhus)",
+      "url": "https://openpsychometrics.org/_rawdata/SD3.zip",
+      "filter": null,
+      "points": 5,
+      "respondents": 18192,
+      "rows_in_file": 18192
+    },
+    "rse": {
+      "title": "Rosenberg Self-Esteem Scale",
+      "url": "https://openpsychometrics.org/_rawdata/RSE.zip",
+      "filter": null,
+      "points": 4,
+      "respondents": 47974,
+      "rows_in_file": 47974
+    }
+  },
   "questions": [
     {
       "id": "q001",
       "text": "I am the life of the party.",
+      "dimension": "sociability",
       "source": {
         "dataset": "ipip-ffm",
         "item": "EXT1",
-        "ipip_factor": "Surgency / Extraversion",
-        "ipip_key": "+"
+        "key": "IPIP key: + keyed on Extraversion"
       },
       "loadings": {
         "sociability": 0.8
@@ -17,16 +74,62 @@
       "loadings_source": "default",
       "baseline": 2.59,
       "baseline_source": "data",
-      "baseline_n": 693455
+      "baseline_n": 693455,
+      "baseline_raw": {
+        "mean": 2.586,
+        "points": 5
+      }
     },
     {
       "id": "q002",
+      "text": "I feel comfortable around people.",
+      "dimension": "sociability",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EXT3",
+        "key": "IPIP key: + keyed on Extraversion"
+      },
+      "loadings": {
+        "sociability": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.24,
+      "baseline_source": "data",
+      "baseline_n": 691940,
+      "baseline_raw": {
+        "mean": 3.24,
+        "points": 5
+      }
+    },
+    {
+      "id": "q003",
+      "text": "I talk to a lot of different people at parties.",
+      "dimension": "sociability",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EXT7",
+        "key": "IPIP key: + keyed on Extraversion"
+      },
+      "loadings": {
+        "sociability": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.72,
+      "baseline_source": "data",
+      "baseline_n": 690462,
+      "baseline_raw": {
+        "mean": 2.724,
+        "points": 5
+      }
+    },
+    {
+      "id": "q004",
       "text": "I don't talk a lot.",
+      "dimension": "sociability",
       "source": {
         "dataset": "ipip-ffm",
         "item": "EXT2",
-        "ipip_factor": "Surgency / Extraversion",
-        "ipip_key": "-"
+        "key": "IPIP key: - keyed on Extraversion"
       },
       "loadings": {
         "sociability": -0.8
@@ -34,33 +137,41 @@
       "loadings_source": "default",
       "baseline": 2.84,
       "baseline_source": "data",
-      "baseline_n": 691919
+      "baseline_n": 691919,
+      "baseline_raw": {
+        "mean": 2.842,
+        "points": 5
+      }
     },
     {
-      "id": "q003",
-      "text": "I feel little concern for others.",
+      "id": "q005",
+      "text": "I am quiet around strangers.",
+      "dimension": "sociability",
       "source": {
         "dataset": "ipip-ffm",
-        "item": "AGR1",
-        "ipip_factor": "Agreeableness",
-        "ipip_key": "-"
+        "item": "EXT10",
+        "key": "IPIP key: - keyed on Extraversion"
       },
       "loadings": {
-        "empathy": -0.8
+        "sociability": -0.8
       },
       "loadings_source": "default",
-      "baseline": 2.25,
+      "baseline": 3.61,
       "baseline_source": "data",
-      "baseline_n": 692630
+      "baseline_n": 691736,
+      "baseline_raw": {
+        "mean": 3.612,
+        "points": 5
+      }
     },
     {
-      "id": "q004",
+      "id": "q006",
       "text": "I get stressed out easily.",
+      "dimension": "anxiety",
       "source": {
         "dataset": "ipip-ffm",
         "item": "EST1",
-        "ipip_factor": "Emotional Stability",
-        "ipip_key": "-"
+        "key": "IPIP key: - keyed on Emotional Stability (IPIP factor is the opposite pole of ours, so flipped)"
       },
       "loadings": {
         "anxiety": 0.8
@@ -68,16 +179,272 @@
       "loadings_source": "default",
       "baseline": 3.31,
       "baseline_source": "data",
-      "baseline_n": 690978
+      "baseline_n": 690978,
+      "baseline_raw": {
+        "mean": 3.312,
+        "points": 5
+      }
     },
     {
-      "id": "q005",
+      "id": "q007",
+      "text": "I worry about things.",
+      "dimension": "anxiety",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EST3",
+        "key": "IPIP key: - keyed on Emotional Stability (IPIP factor is the opposite pole of ours, so flipped)"
+      },
+      "loadings": {
+        "anxiety": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.88,
+      "baseline_source": "data",
+      "baseline_n": 692294,
+      "baseline_raw": {
+        "mean": 3.879,
+        "points": 5
+      }
+    },
+    {
+      "id": "q008",
+      "text": "I am easily disturbed.",
+      "dimension": "anxiety",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EST5",
+        "key": "IPIP key: - keyed on Emotional Stability (IPIP factor is the opposite pole of ours, so flipped)"
+      },
+      "loadings": {
+        "anxiety": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.86,
+      "baseline_source": "data",
+      "baseline_n": 691888,
+      "baseline_raw": {
+        "mean": 2.863,
+        "points": 5
+      }
+    },
+    {
+      "id": "q009",
+      "text": "I am relaxed most of the time.",
+      "dimension": "anxiety",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EST2",
+        "key": "IPIP key: + keyed on Emotional Stability (IPIP factor is the opposite pole of ours, so flipped)"
+      },
+      "loadings": {
+        "anxiety": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.17,
+      "baseline_source": "data",
+      "baseline_n": 689397,
+      "baseline_raw": {
+        "mean": 3.169,
+        "points": 5
+      }
+    },
+    {
+      "id": "q010",
+      "text": "I remain calm under pressure.",
+      "dimension": "anxiety",
+      "source": {
+        "dataset": "hexaco",
+        "item": "EAnxi9",
+        "key": "wording: agreeing means calmer"
+      },
+      "loadings": {
+        "anxiety": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.25,
+      "baseline_source": "data",
+      "baseline_n": 20364,
+      "baseline_raw": {
+        "mean": 4.37,
+        "points": 7
+      }
+    },
+    {
+      "id": "q011",
+      "text": "I sympathize with others' feelings.",
+      "dimension": "empathy",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "AGR4",
+        "key": "IPIP key: + keyed on Agreeableness"
+      },
+      "loadings": {
+        "empathy": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.95,
+      "baseline_source": "data",
+      "baseline_n": 690878,
+      "baseline_raw": {
+        "mean": 3.949,
+        "points": 5
+      }
+    },
+    {
+      "id": "q012",
+      "text": "I have a soft heart.",
+      "dimension": "empathy",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "AGR6",
+        "key": "IPIP key: + keyed on Agreeableness"
+      },
+      "loadings": {
+        "empathy": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.76,
+      "baseline_source": "data",
+      "baseline_n": 688926,
+      "baseline_raw": {
+        "mean": 3.762,
+        "points": 5
+      }
+    },
+    {
+      "id": "q013",
+      "text": "I feel others' emotions.",
+      "dimension": "empathy",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "AGR9",
+        "key": "IPIP key: + keyed on Agreeableness"
+      },
+      "loadings": {
+        "empathy": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.8,
+      "baseline_source": "data",
+      "baseline_n": 691888,
+      "baseline_raw": {
+        "mean": 3.797,
+        "points": 5
+      }
+    },
+    {
+      "id": "q014",
+      "text": "I feel little concern for others.",
+      "dimension": "empathy",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "AGR1",
+        "key": "IPIP key: - keyed on Agreeableness"
+      },
+      "loadings": {
+        "empathy": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.25,
+      "baseline_source": "data",
+      "baseline_n": 692630,
+      "baseline_raw": {
+        "mean": 2.25,
+        "points": 5
+      }
+    },
+    {
+      "id": "q015",
+      "text": "I am not interested in other people's problems.",
+      "dimension": "empathy",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "AGR5",
+        "key": "IPIP key: - keyed on Agreeableness"
+      },
+      "loadings": {
+        "empathy": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.3,
+      "baseline_source": "data",
+      "baseline_n": 691612,
+      "baseline_raw": {
+        "mean": 2.303,
+        "points": 5
+      }
+    },
+    {
+      "id": "q016",
+      "text": "I am always prepared.",
+      "dimension": "discipline",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "CSN1",
+        "key": "IPIP key: + keyed on Conscientiousness"
+      },
+      "loadings": {
+        "discipline": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.32,
+      "baseline_source": "data",
+      "baseline_n": 688137,
+      "baseline_raw": {
+        "mean": 3.317,
+        "points": 5
+      }
+    },
+    {
+      "id": "q017",
+      "text": "I get chores done right away.",
+      "dimension": "discipline",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "CSN5",
+        "key": "IPIP key: + keyed on Conscientiousness"
+      },
+      "loadings": {
+        "discipline": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.6,
+      "baseline_source": "data",
+      "baseline_n": 690720,
+      "baseline_raw": {
+        "mean": 2.596,
+        "points": 5
+      }
+    },
+    {
+      "id": "q018",
+      "text": "I follow a schedule.",
+      "dimension": "discipline",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "CSN9",
+        "key": "IPIP key: + keyed on Conscientiousness"
+      },
+      "loadings": {
+        "discipline": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.16,
+      "baseline_source": "data",
+      "baseline_n": 690903,
+      "baseline_raw": {
+        "mean": 3.161,
+        "points": 5
+      }
+    },
+    {
+      "id": "q019",
       "text": "I leave my belongings around.",
+      "dimension": "discipline",
       "source": {
         "dataset": "ipip-ffm",
         "item": "CSN2",
-        "ipip_factor": "Conscientiousness",
-        "ipip_key": "-"
+        "key": "IPIP key: - keyed on Conscientiousness"
       },
       "loadings": {
         "discipline": -0.8
@@ -85,7 +452,872 @@
       "loadings_source": "default",
       "baseline": 3.0,
       "baseline_source": "data",
-      "baseline_n": 691622
+      "baseline_n": 691622,
+      "baseline_raw": {
+        "mean": 2.997,
+        "points": 5
+      }
+    },
+    {
+      "id": "q020",
+      "text": "I shirk my duties.",
+      "dimension": "discipline",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "CSN8",
+        "key": "IPIP key: - keyed on Conscientiousness"
+      },
+      "loadings": {
+        "discipline": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.49,
+      "baseline_source": "data",
+      "baseline_n": 690510,
+      "baseline_raw": {
+        "mean": 2.495,
+        "points": 5
+      }
+    },
+    {
+      "id": "q021",
+      "text": "I have a vivid imagination.",
+      "dimension": "openness",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "OPN3",
+        "key": "IPIP key: + keyed on Intellect/Imagination"
+      },
+      "loadings": {
+        "openness": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 4.06,
+      "baseline_source": "data",
+      "baseline_n": 690882,
+      "baseline_raw": {
+        "mean": 4.063,
+        "points": 5
+      }
+    },
+    {
+      "id": "q022",
+      "text": "I am full of ideas.",
+      "dimension": "openness",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "OPN10",
+        "key": "IPIP key: + keyed on Intellect/Imagination"
+      },
+      "loadings": {
+        "openness": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 4.0,
+      "baseline_source": "data",
+      "baseline_n": 691725,
+      "baseline_raw": {
+        "mean": 3.997,
+        "points": 5
+      }
+    },
+    {
+      "id": "q023",
+      "text": "I prefer variety to routine.",
+      "dimension": "openness",
+      "source": {
+        "dataset": "as-sc-ad-do",
+        "item": "AD1",
+        "key": "IPIP key: + keyed on Adventurousness"
+      },
+      "loadings": {
+        "openness": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.65,
+      "baseline_source": "data",
+      "baseline_n": 999,
+      "baseline_raw": {
+        "mean": 3.648,
+        "points": 5
+      }
+    },
+    {
+      "id": "q024",
+      "text": "I have difficulty understanding abstract ideas.",
+      "dimension": "openness",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "OPN2",
+        "key": "IPIP key: - keyed on Intellect/Imagination"
+      },
+      "loadings": {
+        "openness": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.04,
+      "baseline_source": "data",
+      "baseline_n": 692049,
+      "baseline_raw": {
+        "mean": 2.037,
+        "points": 5
+      }
+    },
+    {
+      "id": "q025",
+      "text": "I am not interested in abstract ideas.",
+      "dimension": "openness",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "OPN4",
+        "key": "IPIP key: - keyed on Intellect/Imagination"
+      },
+      "loadings": {
+        "openness": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 1.97,
+      "baseline_source": "data",
+      "baseline_n": 691544,
+      "baseline_raw": {
+        "mean": 1.968,
+        "points": 5
+      }
+    },
+    {
+      "id": "q026",
+      "text": "I would never take things that aren't mine.",
+      "dimension": "honesty",
+      "source": {
+        "dataset": "hexaco",
+        "item": "HFair1",
+        "key": "wording: agreeing means more honest"
+      },
+      "loadings": {
+        "honesty": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.49,
+      "baseline_source": "data",
+      "baseline_n": 20364,
+      "baseline_raw": {
+        "mean": 4.738,
+        "points": 7
+      }
+    },
+    {
+      "id": "q027",
+      "text": "Honesty is the best policy in all cases.",
+      "dimension": "honesty",
+      "source": {
+        "dataset": "mach-iv",
+        "item": "Q6",
+        "key": "MACH-IV reverse-scored item: agreeing means less Machiavellian, more honest"
+      },
+      "loadings": {
+        "honesty": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.67,
+      "baseline_source": "data",
+      "baseline_n": 54974,
+      "baseline_raw": {
+        "mean": 2.668,
+        "points": 5
+      }
+    },
+    {
+      "id": "q028",
+      "text": "I use flattery to get ahead.",
+      "dimension": "honesty",
+      "source": {
+        "dataset": "hexaco",
+        "item": "HSinc2",
+        "key": "wording: agreeing means more manipulative"
+      },
+      "loadings": {
+        "honesty": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.44,
+      "baseline_source": "data",
+      "baseline_n": 20364,
+      "baseline_raw": {
+        "mean": 3.165,
+        "points": 7
+      }
+    },
+    {
+      "id": "q029",
+      "text": "I cheat to get ahead.",
+      "dimension": "honesty",
+      "source": {
+        "dataset": "hexaco",
+        "item": "HFair7",
+        "key": "wording: agreeing means less honest"
+      },
+      "loadings": {
+        "honesty": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.09,
+      "baseline_source": "data",
+      "baseline_n": 20364,
+      "baseline_raw": {
+        "mean": 2.641,
+        "points": 7
+      }
+    },
+    {
+      "id": "q030",
+      "text": "I tend to manipulate others to get my way.",
+      "dimension": "honesty",
+      "source": {
+        "dataset": "hsns-dd",
+        "item": "DDM1",
+        "key": "Dirty Dozen Machiavellianism item (all DD items forward-scored)"
+      },
+      "loadings": {
+        "honesty": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.11,
+      "baseline_source": "data",
+      "baseline_n": 53799,
+      "baseline_raw": {
+        "mean": 3.107,
+        "points": 5
+      }
+    },
+    {
+      "id": "q031",
+      "text": "I get back at people who insult me.",
+      "dimension": "hostility",
+      "source": {
+        "dataset": "hexaco",
+        "item": "AForg7",
+        "key": "wording: agreeing means more vengeful"
+      },
+      "loadings": {
+        "hostility": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.91,
+      "baseline_source": "data",
+      "baseline_n": 20365,
+      "baseline_raw": {
+        "mean": 3.866,
+        "points": 7
+      }
+    },
+    {
+      "id": "q032",
+      "text": "Payback needs to be quick and nasty.",
+      "dimension": "hostility",
+      "source": {
+        "dataset": "sd3",
+        "item": "P3",
+        "key": "SD3 psychopathy item, forward-scored"
+      },
+      "loadings": {
+        "hostility": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.62,
+      "baseline_source": "data",
+      "baseline_n": 18169,
+      "baseline_raw": {
+        "mean": 2.623,
+        "points": 5
+      }
+    },
+    {
+      "id": "q033",
+      "text": "I get irritated easily.",
+      "dimension": "hostility",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EST9",
+        "key": "IPIP key: - keyed on Emotional Stability; irritability, so up on hostility"
+      },
+      "loadings": {
+        "hostility": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.11,
+      "baseline_source": "data",
+      "baseline_n": 691684,
+      "baseline_raw": {
+        "mean": 3.106,
+        "points": 5
+      }
+    },
+    {
+      "id": "q034",
+      "text": "I rarely get irritated.",
+      "dimension": "hostility",
+      "source": {
+        "dataset": "hexaco",
+        "item": "APati4",
+        "key": "wording: agreeing means more easygoing"
+      },
+      "loadings": {
+        "hostility": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.41,
+      "baseline_source": "data",
+      "baseline_n": 20365,
+      "baseline_raw": {
+        "mean": 3.118,
+        "points": 7
+      }
+    },
+    {
+      "id": "q035",
+      "text": "I try to forgive and forget.",
+      "dimension": "hostility",
+      "source": {
+        "dataset": "hexaco",
+        "item": "AForg2",
+        "key": "wording: agreeing means less vengeful"
+      },
+      "loadings": {
+        "hostility": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.67,
+      "baseline_source": "data",
+      "baseline_n": 20365,
+      "baseline_raw": {
+        "mean": 5.009,
+        "points": 7
+      }
+    },
+    {
+      "id": "q036",
+      "text": "I love dangerous situations.",
+      "dimension": "risk_taking",
+      "source": {
+        "dataset": "hexaco",
+        "item": "EFear8",
+        "key": "wording: agreeing means more thrill-seeking"
+      },
+      "loadings": {
+        "risk_taking": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.69,
+      "baseline_source": "data",
+      "baseline_n": 20365,
+      "baseline_raw": {
+        "mean": 3.537,
+        "points": 7
+      }
+    },
+    {
+      "id": "q037",
+      "text": "I am willing to take risks.",
+      "dimension": "risk_taking",
+      "source": {
+        "dataset": "hexaco",
+        "item": "EFear10",
+        "key": "wording: agreeing means more risk-taking"
+      },
+      "loadings": {
+        "risk_taking": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.46,
+      "baseline_source": "data",
+      "baseline_n": 20363,
+      "baseline_raw": {
+        "mean": 4.697,
+        "points": 7
+      }
+    },
+    {
+      "id": "q038",
+      "text": "I like to do frightening things.",
+      "dimension": "risk_taking",
+      "source": {
+        "dataset": "hexaco",
+        "item": "EFear6",
+        "key": "wording: agreeing means more thrill-seeking"
+      },
+      "loadings": {
+        "risk_taking": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.83,
+      "baseline_source": "data",
+      "baseline_n": 20365,
+      "baseline_raw": {
+        "mean": 3.745,
+        "points": 7
+      }
+    },
+    {
+      "id": "q039",
+      "text": "I would never go riding down a stretch of rapids in a canoe.",
+      "dimension": "risk_taking",
+      "source": {
+        "dataset": "hexaco",
+        "item": "EFear5",
+        "key": "wording: agreeing means more cautious"
+      },
+      "loadings": {
+        "risk_taking": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.82,
+      "baseline_source": "data",
+      "baseline_n": 20364,
+      "baseline_raw": {
+        "mean": 3.728,
+        "points": 7
+      }
+    },
+    {
+      "id": "q040",
+      "text": "I avoid dangerous situations.",
+      "dimension": "risk_taking",
+      "source": {
+        "dataset": "sd3",
+        "item": "P2",
+        "key": "SD3 reverse-scored item: agreeing means more cautious"
+      },
+      "loadings": {
+        "risk_taking": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.21,
+      "baseline_source": "data",
+      "baseline_n": 18160,
+      "baseline_raw": {
+        "mean": 3.211,
+        "points": 5
+      }
+    },
+    {
+      "id": "q041",
+      "text": "I try to lead others.",
+      "dimension": "dominance",
+      "source": {
+        "dataset": "as-sc-ad-do",
+        "item": "AS2",
+        "key": "IPIP Assertiveness, + keyed"
+      },
+      "loadings": {
+        "dominance": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.67,
+      "baseline_source": "data",
+      "baseline_n": 1003,
+      "baseline_raw": {
+        "mean": 3.666,
+        "points": 5
+      }
+    },
+    {
+      "id": "q042",
+      "text": "I automatically take charge.",
+      "dimension": "dominance",
+      "source": {
+        "dataset": "as-sc-ad-do",
+        "item": "AS3",
+        "key": "IPIP Assertiveness, + keyed"
+      },
+      "loadings": {
+        "dominance": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.41,
+      "baseline_source": "data",
+      "baseline_n": 1003,
+      "baseline_raw": {
+        "mean": 3.409,
+        "points": 5
+      }
+    },
+    {
+      "id": "q043",
+      "text": "I impose my will on others.",
+      "dimension": "dominance",
+      "source": {
+        "dataset": "as-sc-ad-do",
+        "item": "DO4",
+        "key": "IPIP Dominance, + keyed"
+      },
+      "loadings": {
+        "dominance": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.73,
+      "baseline_source": "data",
+      "baseline_n": 1001,
+      "baseline_raw": {
+        "mean": 2.732,
+        "points": 5
+      }
+    },
+    {
+      "id": "q044",
+      "text": "I wait for others to lead the way.",
+      "dimension": "dominance",
+      "source": {
+        "dataset": "as-sc-ad-do",
+        "item": "AS7",
+        "key": "IPIP Assertiveness, - keyed"
+      },
+      "loadings": {
+        "dominance": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.67,
+      "baseline_source": "data",
+      "baseline_n": 1000,
+      "baseline_raw": {
+        "mean": 2.675,
+        "points": 5
+      }
+    },
+    {
+      "id": "q045",
+      "text": "I let others make the decisions.",
+      "dimension": "dominance",
+      "source": {
+        "dataset": "as-sc-ad-do",
+        "item": "AS8",
+        "key": "IPIP Assertiveness, - keyed"
+      },
+      "loadings": {
+        "dominance": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.74,
+      "baseline_source": "data",
+      "baseline_n": 998,
+      "baseline_raw": {
+        "mean": 2.744,
+        "points": 5
+      }
+    },
+    {
+      "id": "q046",
+      "text": "Most people are basically good and kind.",
+      "dimension": "trust",
+      "source": {
+        "dataset": "mach-iv",
+        "item": "Q4",
+        "key": "MACH-IV reverse-scored item: agreeing means more trusting"
+      },
+      "loadings": {
+        "trust": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.82,
+      "baseline_source": "data",
+      "baseline_n": 54974,
+      "baseline_raw": {
+        "mean": 2.82,
+        "points": 5
+      }
+    },
+    {
+      "id": "q047",
+      "text": "Most people who get ahead in the world lead clean, moral lives.",
+      "dimension": "trust",
+      "source": {
+        "dataset": "mach-iv",
+        "item": "Q11",
+        "key": "MACH-IV reverse-scored item: agreeing means more trusting"
+      },
+      "loadings": {
+        "trust": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 1.77,
+      "baseline_source": "data",
+      "baseline_n": 54974,
+      "baseline_raw": {
+        "mean": 1.765,
+        "points": 5
+      }
+    },
+    {
+      "id": "q048",
+      "text": "It is safest to assume that all people have a vicious streak and it will come out when they are given a chance.",
+      "dimension": "trust",
+      "source": {
+        "dataset": "mach-iv",
+        "item": "Q5",
+        "key": "MACH-IV forward-scored item: agreeing means more cynical"
+      },
+      "loadings": {
+        "trust": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.59,
+      "baseline_source": "data",
+      "baseline_n": 54974,
+      "baseline_raw": {
+        "mean": 3.588,
+        "points": 5
+      }
+    },
+    {
+      "id": "q049",
+      "text": "Anyone who completely trusts anyone else is asking for trouble.",
+      "dimension": "trust",
+      "source": {
+        "dataset": "mach-iv",
+        "item": "Q12",
+        "key": "MACH-IV forward-scored item: agreeing means more suspicious"
+      },
+      "loadings": {
+        "trust": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.67,
+      "baseline_source": "data",
+      "baseline_n": 54974,
+      "baseline_raw": {
+        "mean": 3.666,
+        "points": 5
+      }
+    },
+    {
+      "id": "q050",
+      "text": "I tend to be cynical.",
+      "dimension": "trust",
+      "source": {
+        "dataset": "hsns-dd",
+        "item": "DDP4",
+        "key": "Dirty Dozen psychopathy item: agreeing means more cynical"
+      },
+      "loadings": {
+        "trust": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.81,
+      "baseline_source": "data",
+      "baseline_n": 53688,
+      "baseline_raw": {
+        "mean": 3.81,
+        "points": 5
+      }
+    },
+    {
+      "id": "q051",
+      "text": "I believe that I am better than others.",
+      "dimension": "self_image",
+      "source": {
+        "dataset": "hexaco",
+        "item": "HMode6",
+        "key": "HEXACO Modesty, reversed: agreeing means more grandiose"
+      },
+      "loadings": {
+        "self_image": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.65,
+      "baseline_source": "data",
+      "baseline_n": 20365,
+      "baseline_raw": {
+        "mean": 3.474,
+        "points": 7
+      }
+    },
+    {
+      "id": "q052",
+      "text": "I am more capable than most others.",
+      "dimension": "self_image",
+      "source": {
+        "dataset": "hexaco",
+        "item": "HMode8",
+        "key": "HEXACO Modesty, reversed: agreeing means more grandiose"
+      },
+      "loadings": {
+        "self_image": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.39,
+      "baseline_source": "data",
+      "baseline_n": 20364,
+      "baseline_raw": {
+        "mean": 4.588,
+        "points": 7
+      }
+    },
+    {
+      "id": "q053",
+      "text": "I know that I am special because everyone keeps telling me so.",
+      "dimension": "self_image",
+      "source": {
+        "dataset": "sd3",
+        "item": "N4",
+        "key": "SD3 narcissism item, forward-scored"
+      },
+      "loadings": {
+        "self_image": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.68,
+      "baseline_source": "data",
+      "baseline_n": 18166,
+      "baseline_raw": {
+        "mean": 2.681,
+        "points": 5
+      }
+    },
+    {
+      "id": "q054",
+      "text": "I am an average person.",
+      "dimension": "self_image",
+      "source": {
+        "dataset": "sd3",
+        "item": "N8",
+        "key": "SD3 reverse-scored narcissism item"
+      },
+      "loadings": {
+        "self_image": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.6,
+      "baseline_source": "data",
+      "baseline_n": 18166,
+      "baseline_raw": {
+        "mean": 2.6,
+        "points": 5
+      }
+    },
+    {
+      "id": "q055",
+      "text": "At times I think I am no good at all.",
+      "dimension": "self_image",
+      "source": {
+        "dataset": "rse",
+        "item": "Q10",
+        "key": "Rosenberg reverse-scored item: agreeing means more self-doubting"
+      },
+      "loadings": {
+        "self_image": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.11,
+      "baseline_source": "data",
+      "baseline_n": 47772,
+      "baseline_raw": {
+        "mean": 2.58,
+        "points": 4
+      }
+    },
+    {
+      "id": "q056",
+      "text": "I tend to want others to admire me.",
+      "dimension": "admiration_seeking",
+      "source": {
+        "dataset": "hsns-dd",
+        "item": "DDN1",
+        "key": "Dirty Dozen narcissism item, forward-scored"
+      },
+      "loadings": {
+        "admiration_seeking": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.82,
+      "baseline_source": "data",
+      "baseline_n": 53678,
+      "baseline_raw": {
+        "mean": 3.819,
+        "points": 5
+      }
+    },
+    {
+      "id": "q057",
+      "text": "I tend to want others to pay attention to me.",
+      "dimension": "admiration_seeking",
+      "source": {
+        "dataset": "hsns-dd",
+        "item": "DDN2",
+        "key": "Dirty Dozen narcissism item, forward-scored"
+      },
+      "loadings": {
+        "admiration_seeking": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.31,
+      "baseline_source": "data",
+      "baseline_n": 53638,
+      "baseline_raw": {
+        "mean": 3.312,
+        "points": 5
+      }
+    },
+    {
+      "id": "q058",
+      "text": "I like to attract attention.",
+      "dimension": "admiration_seeking",
+      "source": {
+        "dataset": "hexaco",
+        "item": "HMode7",
+        "key": "HEXACO Modesty, reversed: agreeing means more attention-seeking"
+      },
+      "loadings": {
+        "admiration_seeking": 0.8
+      },
+      "loadings_source": "default",
+      "baseline": 2.73,
+      "baseline_source": "data",
+      "baseline_n": 20365,
+      "baseline_raw": {
+        "mean": 3.598,
+        "points": 7
+      }
+    },
+    {
+      "id": "q059",
+      "text": "I hate being the center of attention.",
+      "dimension": "admiration_seeking",
+      "source": {
+        "dataset": "sd3",
+        "item": "N2",
+        "key": "SD3 reverse-scored narcissism item"
+      },
+      "loadings": {
+        "admiration_seeking": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.12,
+      "baseline_source": "data",
+      "baseline_n": 18166,
+      "baseline_raw": {
+        "mean": 3.121,
+        "points": 5
+      }
+    },
+    {
+      "id": "q060",
+      "text": "I don't like to draw attention to myself.",
+      "dimension": "admiration_seeking",
+      "source": {
+        "dataset": "ipip-ffm",
+        "item": "EXT8",
+        "key": "IPIP key: - keyed on Extraversion; agreeing means less attention-seeking"
+      },
+      "loadings": {
+        "admiration_seeking": -0.8
+      },
+      "loadings_source": "default",
+      "baseline": 3.46,
+      "baseline_source": "data",
+      "baseline_n": 691703,
+      "baseline_raw": {
+        "mean": 3.463,
+        "points": 5
+      }
     }
   ]
 }

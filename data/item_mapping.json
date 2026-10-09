@@ -1,0 +1,552 @@
+{
+  "version": 2,
+  "default_loading": 0.8,
+  "note": "sign = +1 if agreeing with the sentence moves the user toward the HIGH pole of `dimension`, -1 toward the low pole. `key` records why.",
+  "datasets": {
+    "ipip-ffm": {
+      "title": "IPIP Big-Five Factor Markers (Open Psychometrics, 2016-2018)",
+      "url": "https://openpsychometrics.org/_rawdata/IPIP-FFM-data-8Nov2018.zip",
+      "file": "IPIP-FFM-data-8Nov2018/data-final.csv",
+      "sep": "\t",
+      "points": 5,
+      "column": "{item}",
+      "filter": "IPC == 1"
+    },
+    "hexaco": {
+      "title": "IPIP HEXACO equivalent scales",
+      "url": "https://openpsychometrics.org/_rawdata/HEXACO.zip",
+      "file": "HEXACO/data.csv",
+      "sep": "\t",
+      "points": 7,
+      "column": "{item}",
+      "filter": "V1 >= 6 and V2 >= 6"
+    },
+    "sd3": {
+      "title": "Short Dark Triad (Jones & Paulhus)",
+      "url": "https://openpsychometrics.org/_rawdata/SD3.zip",
+      "file": "SD3/data.csv",
+      "sep": "\t",
+      "points": 5,
+      "column": "{item}",
+      "filter": null
+    },
+    "as-sc-ad-do": {
+      "title": "IPIP Assertiveness, Social Confidence, Adventurousness, Dominance",
+      "url": "https://openpsychometrics.org/_rawdata/AS+SC+AD+DO.zip",
+      "file": "AS+SC+AD+DO/data.csv",
+      "sep": ",",
+      "points": 5,
+      "column": "{item}",
+      "filter": null
+    },
+    "rse": {
+      "title": "Rosenberg Self-Esteem Scale",
+      "url": "https://openpsychometrics.org/_rawdata/RSE.zip",
+      "file": "RSE/data.csv",
+      "sep": "\t",
+      "points": 4,
+      "column": "{item}",
+      "filter": null
+    },
+    "hsns-dd": {
+      "title": "Hypersensitive Narcissism Scale + Dirty Dozen",
+      "url": "https://openpsychometrics.org/_rawdata/HSNS+DD.zip",
+      "file": "HSNS+DD/data.csv",
+      "sep": "\t",
+      "points": 5,
+      "column": "{item}",
+      "filter": null
+    },
+    "mach-iv": {
+      "title": "MACH-IV (Christie & Geis)",
+      "url": "https://openpsychometrics.org/_rawdata/MACH_data.zip",
+      "file": "MACH_data/data.csv",
+      "sep": "\t",
+      "points": 5,
+      "column": "{item}A",
+      "filter": "VCL6 == 0 and VCL9 == 0 and VCL12 == 0"
+    }
+  },
+  "items": [
+    {
+      "dimension": "sociability",
+      "dataset": "ipip-ffm",
+      "item": "EXT1",
+      "text": "I am the life of the party.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Extraversion"
+    },
+    {
+      "dimension": "sociability",
+      "dataset": "ipip-ffm",
+      "item": "EXT3",
+      "text": "I feel comfortable around people.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Extraversion"
+    },
+    {
+      "dimension": "sociability",
+      "dataset": "ipip-ffm",
+      "item": "EXT7",
+      "text": "I talk to a lot of different people at parties.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Extraversion"
+    },
+    {
+      "dimension": "sociability",
+      "dataset": "ipip-ffm",
+      "item": "EXT2",
+      "text": "I don't talk a lot.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Extraversion"
+    },
+    {
+      "dimension": "sociability",
+      "dataset": "ipip-ffm",
+      "item": "EXT10",
+      "text": "I am quiet around strangers.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Extraversion"
+    },
+    {
+      "dimension": "anxiety",
+      "dataset": "ipip-ffm",
+      "item": "EST1",
+      "text": "I get stressed out easily.",
+      "sign": 1,
+      "key": "IPIP key: - keyed on Emotional Stability (IPIP factor is the opposite pole of ours, so flipped)"
+    },
+    {
+      "dimension": "anxiety",
+      "dataset": "ipip-ffm",
+      "item": "EST3",
+      "text": "I worry about things.",
+      "sign": 1,
+      "key": "IPIP key: - keyed on Emotional Stability (IPIP factor is the opposite pole of ours, so flipped)"
+    },
+    {
+      "dimension": "anxiety",
+      "dataset": "ipip-ffm",
+      "item": "EST5",
+      "text": "I am easily disturbed.",
+      "sign": 1,
+      "key": "IPIP key: - keyed on Emotional Stability (IPIP factor is the opposite pole of ours, so flipped)"
+    },
+    {
+      "dimension": "anxiety",
+      "dataset": "ipip-ffm",
+      "item": "EST2",
+      "text": "I am relaxed most of the time.",
+      "sign": -1,
+      "key": "IPIP key: + keyed on Emotional Stability (IPIP factor is the opposite pole of ours, so flipped)"
+    },
+    {
+      "dimension": "anxiety",
+      "dataset": "hexaco",
+      "item": "EAnxi9",
+      "text": "I remain calm under pressure.",
+      "sign": -1,
+      "key": "wording: agreeing means calmer"
+    },
+    {
+      "dimension": "empathy",
+      "dataset": "ipip-ffm",
+      "item": "AGR4",
+      "text": "I sympathize with others' feelings.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Agreeableness"
+    },
+    {
+      "dimension": "empathy",
+      "dataset": "ipip-ffm",
+      "item": "AGR6",
+      "text": "I have a soft heart.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Agreeableness"
+    },
+    {
+      "dimension": "empathy",
+      "dataset": "ipip-ffm",
+      "item": "AGR9",
+      "text": "I feel others' emotions.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Agreeableness"
+    },
+    {
+      "dimension": "empathy",
+      "dataset": "ipip-ffm",
+      "item": "AGR1",
+      "text": "I feel little concern for others.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Agreeableness"
+    },
+    {
+      "dimension": "empathy",
+      "dataset": "ipip-ffm",
+      "item": "AGR5",
+      "text": "I am not interested in other people's problems.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Agreeableness"
+    },
+    {
+      "dimension": "discipline",
+      "dataset": "ipip-ffm",
+      "item": "CSN1",
+      "text": "I am always prepared.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Conscientiousness"
+    },
+    {
+      "dimension": "discipline",
+      "dataset": "ipip-ffm",
+      "item": "CSN5",
+      "text": "I get chores done right away.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Conscientiousness"
+    },
+    {
+      "dimension": "discipline",
+      "dataset": "ipip-ffm",
+      "item": "CSN9",
+      "text": "I follow a schedule.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Conscientiousness"
+    },
+    {
+      "dimension": "discipline",
+      "dataset": "ipip-ffm",
+      "item": "CSN2",
+      "text": "I leave my belongings around.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Conscientiousness"
+    },
+    {
+      "dimension": "discipline",
+      "dataset": "ipip-ffm",
+      "item": "CSN8",
+      "text": "I shirk my duties.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Conscientiousness"
+    },
+    {
+      "dimension": "openness",
+      "dataset": "ipip-ffm",
+      "item": "OPN3",
+      "text": "I have a vivid imagination.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Intellect/Imagination"
+    },
+    {
+      "dimension": "openness",
+      "dataset": "ipip-ffm",
+      "item": "OPN10",
+      "text": "I am full of ideas.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Intellect/Imagination"
+    },
+    {
+      "dimension": "openness",
+      "dataset": "as-sc-ad-do",
+      "item": "AD1",
+      "text": "I prefer variety to routine.",
+      "sign": 1,
+      "key": "IPIP key: + keyed on Adventurousness"
+    },
+    {
+      "dimension": "openness",
+      "dataset": "ipip-ffm",
+      "item": "OPN2",
+      "text": "I have difficulty understanding abstract ideas.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Intellect/Imagination"
+    },
+    {
+      "dimension": "openness",
+      "dataset": "ipip-ffm",
+      "item": "OPN4",
+      "text": "I am not interested in abstract ideas.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Intellect/Imagination"
+    },
+    {
+      "dimension": "honesty",
+      "dataset": "hexaco",
+      "item": "HFair1",
+      "text": "I would never take things that aren't mine.",
+      "sign": 1,
+      "key": "wording: agreeing means more honest"
+    },
+    {
+      "dimension": "honesty",
+      "dataset": "mach-iv",
+      "item": "Q6",
+      "text": "Honesty is the best policy in all cases.",
+      "sign": 1,
+      "key": "MACH-IV reverse-scored item: agreeing means less Machiavellian, more honest"
+    },
+    {
+      "dimension": "honesty",
+      "dataset": "hexaco",
+      "item": "HSinc2",
+      "text": "I use flattery to get ahead.",
+      "sign": -1,
+      "key": "wording: agreeing means more manipulative"
+    },
+    {
+      "dimension": "honesty",
+      "dataset": "hexaco",
+      "item": "HFair7",
+      "text": "I cheat to get ahead.",
+      "sign": -1,
+      "key": "wording: agreeing means less honest"
+    },
+    {
+      "dimension": "honesty",
+      "dataset": "hsns-dd",
+      "item": "DDM1",
+      "text": "I tend to manipulate others to get my way.",
+      "sign": -1,
+      "key": "Dirty Dozen Machiavellianism item (all DD items forward-scored)"
+    },
+    {
+      "dimension": "hostility",
+      "dataset": "hexaco",
+      "item": "AForg7",
+      "text": "I get back at people who insult me.",
+      "sign": 1,
+      "key": "wording: agreeing means more vengeful"
+    },
+    {
+      "dimension": "hostility",
+      "dataset": "sd3",
+      "item": "P3",
+      "text": "Payback needs to be quick and nasty.",
+      "sign": 1,
+      "key": "SD3 psychopathy item, forward-scored"
+    },
+    {
+      "dimension": "hostility",
+      "dataset": "ipip-ffm",
+      "item": "EST9",
+      "text": "I get irritated easily.",
+      "sign": 1,
+      "key": "IPIP key: - keyed on Emotional Stability; irritability, so up on hostility"
+    },
+    {
+      "dimension": "hostility",
+      "dataset": "hexaco",
+      "item": "APati4",
+      "text": "I rarely get irritated.",
+      "sign": -1,
+      "key": "wording: agreeing means more easygoing"
+    },
+    {
+      "dimension": "hostility",
+      "dataset": "hexaco",
+      "item": "AForg2",
+      "text": "I try to forgive and forget.",
+      "sign": -1,
+      "key": "wording: agreeing means less vengeful"
+    },
+    {
+      "dimension": "risk_taking",
+      "dataset": "hexaco",
+      "item": "EFear8",
+      "text": "I love dangerous situations.",
+      "sign": 1,
+      "key": "wording: agreeing means more thrill-seeking"
+    },
+    {
+      "dimension": "risk_taking",
+      "dataset": "hexaco",
+      "item": "EFear10",
+      "text": "I am willing to take risks.",
+      "sign": 1,
+      "key": "wording: agreeing means more risk-taking"
+    },
+    {
+      "dimension": "risk_taking",
+      "dataset": "hexaco",
+      "item": "EFear6",
+      "text": "I like to do frightening things.",
+      "sign": 1,
+      "key": "wording: agreeing means more thrill-seeking"
+    },
+    {
+      "dimension": "risk_taking",
+      "dataset": "hexaco",
+      "item": "EFear5",
+      "text": "I would never go riding down a stretch of rapids in a canoe.",
+      "sign": -1,
+      "key": "wording: agreeing means more cautious"
+    },
+    {
+      "dimension": "risk_taking",
+      "dataset": "sd3",
+      "item": "P2",
+      "text": "I avoid dangerous situations.",
+      "sign": -1,
+      "key": "SD3 reverse-scored item: agreeing means more cautious"
+    },
+    {
+      "dimension": "dominance",
+      "dataset": "as-sc-ad-do",
+      "item": "AS2",
+      "text": "I try to lead others.",
+      "sign": 1,
+      "key": "IPIP Assertiveness, + keyed"
+    },
+    {
+      "dimension": "dominance",
+      "dataset": "as-sc-ad-do",
+      "item": "AS3",
+      "text": "I automatically take charge.",
+      "sign": 1,
+      "key": "IPIP Assertiveness, + keyed"
+    },
+    {
+      "dimension": "dominance",
+      "dataset": "as-sc-ad-do",
+      "item": "DO4",
+      "text": "I impose my will on others.",
+      "sign": 1,
+      "key": "IPIP Dominance, + keyed"
+    },
+    {
+      "dimension": "dominance",
+      "dataset": "as-sc-ad-do",
+      "item": "AS7",
+      "text": "I wait for others to lead the way.",
+      "sign": -1,
+      "key": "IPIP Assertiveness, - keyed"
+    },
+    {
+      "dimension": "dominance",
+      "dataset": "as-sc-ad-do",
+      "item": "AS8",
+      "text": "I let others make the decisions.",
+      "sign": -1,
+      "key": "IPIP Assertiveness, - keyed"
+    },
+    {
+      "dimension": "trust",
+      "dataset": "mach-iv",
+      "item": "Q4",
+      "text": "Most people are basically good and kind.",
+      "sign": 1,
+      "key": "MACH-IV reverse-scored item: agreeing means more trusting"
+    },
+    {
+      "dimension": "trust",
+      "dataset": "mach-iv",
+      "item": "Q11",
+      "text": "Most people who get ahead in the world lead clean, moral lives.",
+      "sign": 1,
+      "key": "MACH-IV reverse-scored item: agreeing means more trusting"
+    },
+    {
+      "dimension": "trust",
+      "dataset": "mach-iv",
+      "item": "Q5",
+      "text": "It is safest to assume that all people have a vicious streak and it will come out when they are given a chance.",
+      "sign": -1,
+      "key": "MACH-IV forward-scored item: agreeing means more cynical"
+    },
+    {
+      "dimension": "trust",
+      "dataset": "mach-iv",
+      "item": "Q12",
+      "text": "Anyone who completely trusts anyone else is asking for trouble.",
+      "sign": -1,
+      "key": "MACH-IV forward-scored item: agreeing means more suspicious"
+    },
+    {
+      "dimension": "trust",
+      "dataset": "hsns-dd",
+      "item": "DDP4",
+      "text": "I tend to be cynical.",
+      "sign": -1,
+      "key": "Dirty Dozen psychopathy item: agreeing means more cynical"
+    },
+    {
+      "dimension": "self_image",
+      "dataset": "hexaco",
+      "item": "HMode6",
+      "text": "I believe that I am better than others.",
+      "sign": 1,
+      "key": "HEXACO Modesty, reversed: agreeing means more grandiose"
+    },
+    {
+      "dimension": "self_image",
+      "dataset": "hexaco",
+      "item": "HMode8",
+      "text": "I am more capable than most others.",
+      "sign": 1,
+      "key": "HEXACO Modesty, reversed: agreeing means more grandiose"
+    },
+    {
+      "dimension": "self_image",
+      "dataset": "sd3",
+      "item": "N4",
+      "text": "I know that I am special because everyone keeps telling me so.",
+      "sign": 1,
+      "key": "SD3 narcissism item, forward-scored"
+    },
+    {
+      "dimension": "self_image",
+      "dataset": "sd3",
+      "item": "N8",
+      "text": "I am an average person.",
+      "sign": -1,
+      "key": "SD3 reverse-scored narcissism item"
+    },
+    {
+      "dimension": "self_image",
+      "dataset": "rse",
+      "item": "Q10",
+      "text": "At times I think I am no good at all.",
+      "sign": -1,
+      "key": "Rosenberg reverse-scored item: agreeing means more self-doubting"
+    },
+    {
+      "dimension": "admiration_seeking",
+      "dataset": "hsns-dd",
+      "item": "DDN1",
+      "text": "I tend to want others to admire me.",
+      "sign": 1,
+      "key": "Dirty Dozen narcissism item, forward-scored"
+    },
+    {
+      "dimension": "admiration_seeking",
+      "dataset": "hsns-dd",
+      "item": "DDN2",
+      "text": "I tend to want others to pay attention to me.",
+      "sign": 1,
+      "key": "Dirty Dozen narcissism item, forward-scored"
+    },
+    {
+      "dimension": "admiration_seeking",
+      "dataset": "hexaco",
+      "item": "HMode7",
+      "text": "I like to attract attention.",
+      "sign": 1,
+      "key": "HEXACO Modesty, reversed: agreeing means more attention-seeking"
+    },
+    {
+      "dimension": "admiration_seeking",
+      "dataset": "sd3",
+      "item": "N2",
+      "text": "I hate being the center of attention.",
+      "sign": -1,
+      "key": "SD3 reverse-scored narcissism item"
+    },
+    {
+      "dimension": "admiration_seeking",
+      "dataset": "ipip-ffm",
+      "item": "EXT8",
+      "text": "I don't like to draw attention to myself.",
+      "sign": -1,
+      "key": "IPIP key: - keyed on Extraversion; agreeing means less attention-seeking"
+    }
+  ]
+}
