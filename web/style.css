@@ -110,3 +110,7 @@ table { width: 100%; border-collapse: collapse; font-size: 14px; }
 td { padding: 6px 0; border-bottom: 1px solid var(--grid); }
 td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
 .balanced { background: var(--card); border-left: 4px solid var(--muted); padding: 12px 14px; border-radius: 8px; margin: 12px 0; }
+
+.lang { display: flex; justify-content: flex-end; gap: 4px; margin: -4px 0 4px; }
+.lang-btn { min-height: 36px; min-width: 44px; padding: 4px 10px; font-size: 13px; font-weight: 600; border-radius: 8px; color: var(--ink-2); }
+.lang-btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }

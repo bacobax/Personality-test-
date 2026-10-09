@@ -33,6 +33,14 @@ To host it on GitHub Pages: Settings → Pages → Source: **GitHub Actions**, t
 repo has to be public. For a single-file copy to host anywhere, run `python3 scripts/build_single_file.py` (writes
 `dist/personality-test.html`).
 
+## Languages
+
+The web page is available in English and Italian (EN/IT switch at the top; it defaults to the phone's language and
+remembers the choice). Question, dimension and archetype text for a language lives in `data/i18n/<lang>.json`; interface
+strings live in `web/i18n.js`. To add a language, add `data/i18n/<lang>.json` (`scripts/build_web.py` refuses to build if
+any question, dimension or archetype id is missing) and a block in `web/i18n.js`, then add its code to `LANGS` in
+`web/app.js`. The command-line test is English only.
+
 ## Files
 
 | Path | What |
