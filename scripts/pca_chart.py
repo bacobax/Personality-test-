@@ -27,10 +27,7 @@ dims, tags, T = bank.dims, bank.tags, bank.T
 D = len(dims)
 score = bank.profile if raw else bank.score
 
-# PCA on tags, uncentered (origin = typical person).
-_, s, Vt = np.linalg.svd(T, full_matrices=False)
-P = Vt[:2].T
-explained = s[:2] ** 2 / (s ** 2).sum()
+P, explained = bank.pca2()
 
 tag_xy = T @ P
 reach = np.array([score(bank.extreme_answers(t)) for t in T])

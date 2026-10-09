@@ -22,9 +22,10 @@ class Bank:
         self.lo, self.hi = self.reachable_range()
 
     def profile(self, r):
-        """Raw profile u (steps 1-4): r holds one 1-5 answer per question."""
-        a = (r - self.mu) / np.maximum(self.mu - 1, 5 - self.mu)
-        c = 0.5 + 0.5 * np.abs(a)
+        """Raw profile u (steps 1-4): r holds one 1-5 answer per question, NaN = not answered."""
+        answered = ~np.isnan(r)
+        a = np.where(answered, (r - self.mu) / np.maximum(self.mu - 1, 5 - self.mu), 0.0)
+        c = np.where(answered, 0.5 + 0.5 * np.abs(a), 0.0)
         return (a @ self.W) / (c @ np.abs(self.W) + self.k0)
 
     def extreme_answers(self, direction):
@@ -46,3 +47,15 @@ class Bank:
 
     def score(self, r):
         return self.normalize(self.profile(r))
+
+    def matches(self, u):
+        """Per tag: cosine (direction) and strength (projection on the unit tag vector)."""
+        norms = np.linalg.norm(self.T, axis=1)
+        strength = self.T @ u / norms
+        cos = strength / max(np.linalg.norm(u), 1e-12)
+        return cos, strength
+
+    def pca2(self):
+        """2D PCA basis fitted on the tag vectors, uncentered (origin = typical person)."""
+        _, s, Vt = np.linalg.svd(self.T, full_matrices=False)
+        return Vt[:2].T, s[:2] ** 2 / (s ** 2).sum()
